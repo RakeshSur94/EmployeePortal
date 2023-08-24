@@ -24,20 +24,24 @@ import lombok.ToString;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Table(name="EMP_DEPARTMENT")
-@ToString
+
 public class Department implements Serializable{
 	@Id
 	private Integer dId;
 	@NonNull
 	private String dName;
-	
+	@NonNull
 	@ManyToOne(targetEntity = Company.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_cid",referencedColumnName = "cId")
 	private Company company;
+	public Department() {
+		System.out.println("Department.Department()");
+	}
+	@Override
+	public String toString() {
+		return "Department [dId=" + dId + ", dName=" + dName + "]";
+	}
 	
-	@OneToMany(targetEntity = Employee.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "depts")
-	private List<Employee> emps;
 
 }

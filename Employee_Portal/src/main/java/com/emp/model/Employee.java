@@ -24,10 +24,8 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name="EMP_INFORMAITON")
-@ToString
 public class Employee implements Serializable {
 	@Id
 	@GeneratedValue(generator = "gen1",strategy = GenerationType.AUTO)
@@ -66,8 +64,20 @@ public class Employee implements Serializable {
 	@Column(length = 15)
 	@NonNull
 	private String gender;
+	@NonNull
 	@ManyToOne(targetEntity = Department.class,cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_dId",referencedColumnName = "dId")
 	private Department depts;
+	public Employee() {
+		System.out.println("Employee.Employee()");
+	}
+	@Override
+	public String toString() {
+		return "Employee [eid=" + eid + ", firstName=" + firstName + ", lastName=" + lastName + ", title=" + title
+				+ ", jobCode=" + jobCode + ", bussinessPhoneNumber=" + bussinessPhoneNumber + ", compEmail=" + compEmail
+				+ ", empId=" + empId + ", location=" + location + ", hod=" + hod + ", workLevel=" + workLevel
+				+ ", Manager=" + Manager + ", gender=" + gender + "]";
+	}
+	
 	
 }
