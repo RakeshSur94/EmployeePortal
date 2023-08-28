@@ -25,7 +25,6 @@ import lombok.ToString;
 @Setter
 @RequiredArgsConstructor
 @Table(name="EMP_DEPARTMENT")
-
 public class Department implements Serializable{
 	@Id
 	private Integer dId;
